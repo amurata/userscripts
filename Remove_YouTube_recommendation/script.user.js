@@ -7,11 +7,16 @@
 // @include      https://www.youtube.com/*
 // ==/UserScript==
 
-(window.onload = function () {
+(function () {
   'use strict';
+    const observer = new MutationObserver(function() {
     const recommendElem = '.ytp-ce-element'
     const removes = document.querySelectorAll(recommendElem);
-    for (let i = 0; i < removes.length; i++) {
-        removes[i].style.display = 'none';
-    }
+        if (removes) {
+            for (let i = 0; i < removes.length; i++) {
+                removes[i].style.display = 'none';
+            }
+        }
+    });
+    observer.observe(document, {childList: true, subtree: true});
 })();
