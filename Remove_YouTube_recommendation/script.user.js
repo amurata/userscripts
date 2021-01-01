@@ -3,7 +3,7 @@
 // @version      0.1
 // @namespace    https://github.com/amurata/userscripts
 // @description  Remove the last YouTube recommendation window
-// @author       Atsuo MURATA
+// @author       amurata
 // @include      https://www.youtube.com/*
 // ==/UserScript==
 
