@@ -17,7 +17,7 @@ function uniq(array) {
 (function() {
   'use strict';
   const body = window.document.body.innerHTML
-  const regExp = /vi\/(.+?)\/hq/g
+  const regExp = /vi\/(.+?)\/.+?\.jpg/g
   let videoKeys = [], myArray;
   while ((myArray = regExp.exec(body)) != null) {
       if(myArray[1] != null) {
