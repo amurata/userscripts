@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         youtube-dl commands generator
 // @namespace    http://tampermonkey.net/
-// @version      0.1
+// @version      0.2
 // @description  youtubeのページで表示している動画のリンクをダウンロードする youtube-dl のコマンドを生成します。
 // @author       amurata
 // @match        https://www.youtube.com/*
@@ -16,10 +16,10 @@ function uniq(array) {
 // main
 (function() {
   'use strict';
-  const body = window.document.body.innerHTML
-  const regExp = /vi\/(.+?)\/.+?\.jpg/g
+  const shadyPrimaryHTML = window.document.getElementById('primary').__shady.ba.host.innerHTML
+  const regExp = /watch\?v=([^&"]+?)(?:&|")/g
   let videoKeys = [], myArray;
-  while ((myArray = regExp.exec(body)) != null) {
+  while ((myArray = regExp.exec(shadyPrimaryHTML)) != null) {
       if(myArray[1] != null) {
           videoKeys.push(`youtube-dl '${myArray[1]}'`)
       }
@@ -30,6 +30,7 @@ function uniq(array) {
   console.log(commands)
   // クリップボードにコピー
   if(navigator.clipboard){
+    navigator.clipboard.writeText('')
     navigator.clipboard.writeText(commands)
   }
 })();
